@@ -1,16 +1,11 @@
 package com.rafaelsaca.cardapio.models;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
 public class Produto {
@@ -22,19 +17,25 @@ public class Produto {
     @NotBlank(message = "A descrição é obrigatória!")
     private String descricao;
     @PositiveOrZero(message = "O valor não pode ser negativo!")
-    private BigDecimal valor;
+    private Double valor;
     @PositiveOrZero(message = "A quantidade não pode ser negativa!")
     private Integer quantidade;
+    @NotBlank(message="O tipo é obrigatório")
+    private String tipo;
+    @NotBlank(message="A imagem é obrigatória!")
+    private String imgUrl;
 
     public Produto() {
     }
 
-    public Produto(Integer quantidade, BigDecimal valor, String descricao, String nome, Long id) {
-        this.quantidade = quantidade;
-        this.valor = valor;
+    public Produto(String descricao, Long id, String imgUrl, String nome, Integer quantidade, String tipo, Double valor) {
         this.descricao = descricao;
-        this.nome = nome;
         this.id = id;
+        this.imgUrl = imgUrl;
+        this.nome = nome;
+        this.quantidade = quantidade;
+        this.tipo = tipo;
+        this.valor = valor;
     }
 
     public Long getId() {
@@ -45,35 +46,53 @@ public class Produto {
         this.id = id;
     }
 
-    public @NotBlank(message = "O nome é obrigatório!") String getNome() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNome(@NotBlank(message = "O nome é obrigatório!") String nome) {
+    public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public @NotBlank(message = "A descrição é obrigatória!") String getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
-    public void setDescricao(@NotBlank(message = "A descrição é obrigatória!") String descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 
-    public @PositiveOrZero(message = "O valor não pode ser negativo!") BigDecimal getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(@PositiveOrZero(message = "O valor não pode ser negativo!") BigDecimal valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public @PositiveOrZero(message = "A quantidade não pode ser negativa!") Integer getQuantidade() {
+    public Integer getQuantidade() {
         return quantidade;
     }
 
-    public void setQuantidade(@PositiveOrZero(message = "A quantidade não pode ser negativa!") Integer quantidade) {
+    public void setQuantidade(Integer quantidade) {
         this.quantidade = quantidade;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    
 }
