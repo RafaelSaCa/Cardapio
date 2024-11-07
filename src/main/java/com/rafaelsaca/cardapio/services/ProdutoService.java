@@ -1,21 +1,16 @@
 package com.rafaelsaca.cardapio.services;
 
-import com.rafaelsaca.cardapio.exceptions.RecursoNotFoundException;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.rafaelsaca.cardapio.dtos.ProdutoDto;
+import com.rafaelsaca.cardapio.exceptions.RecursoNotFoundException;
 import com.rafaelsaca.cardapio.mappers.ProdutoMapper;
 import com.rafaelsaca.cardapio.models.Produto;
 import com.rafaelsaca.cardapio.repositories.ProdutoRepository;
 
 import jakarta.transaction.Transactional;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -58,6 +53,8 @@ public class ProdutoService {
         produtoExistente.setDescricao(produtoDto.getDescricao());
         produtoExistente.setValor(produtoDto.getValor());
         produtoExistente.setQuantidade(produtoDto.getQuantidade());
+        produtoExistente.setTipo(produtoDto.getTipo());
+        produtoExistente.setImgUrl(produtoDto.getImgUrl());
 
         Produto produtoSalvo = repository.save(produtoExistente);
         return mapper.toDto(produtoSalvo);
@@ -68,7 +65,6 @@ public class ProdutoService {
         if(!repository.existsById(id)){
             throw new RecursoNotFoundException("Produto não encontrado!");
         }
-
         repository.deleteById(id);
     }
   
