@@ -1,13 +1,14 @@
 package com.rafaelsaca.cardapio.mappers;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import com.rafaelsaca.cardapio.dtos.ProdutoDto;
+import com.rafaelsaca.cardapio.dtos.response.ProdutoResponse;
 import com.rafaelsaca.cardapio.models.Produto;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class ProdutoMapper {
@@ -29,6 +30,10 @@ public class ProdutoMapper {
     public List<ProdutoDto> toListDto (List<Produto> produtos){
         return produtos.stream().map(produto -> mapper.map(produto,ProdutoDto.class))
                 .collect(Collectors.toList());
+    }
+
+    public ProdutoResponse toResponse (Produto produto){
+        return mapper.map(produto, ProdutoResponse.class);
     }
 
 
