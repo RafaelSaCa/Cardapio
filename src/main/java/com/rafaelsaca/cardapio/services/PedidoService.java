@@ -14,10 +14,10 @@ import com.rafaelsaca.cardapio.mappers.ProdutoMapper;
 import com.rafaelsaca.cardapio.models.Pedido;
 import com.rafaelsaca.cardapio.models.Pedido.StatusPedido;
 import com.rafaelsaca.cardapio.models.Produto;
-import com.rafaelsaca.cardapio.models.Usuario;
+import com.rafaelsaca.cardapio.models.User;
 import com.rafaelsaca.cardapio.repositories.PedidoRepository;
 import com.rafaelsaca.cardapio.repositories.ProdutoRepository;
-import com.rafaelsaca.cardapio.repositories.UsuarioRepository;
+import com.rafaelsaca.cardapio.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -26,12 +26,12 @@ public class PedidoService {
 
     private final PedidoRepository repository;
     private final ProdutoRepository produtoRepository;
-    private final UsuarioRepository usuarioRepository;
+    private final UserRepository usuarioRepository;
     private final ProdutoMapper produtoMapper;
     private final PedidoMapper pedidoMapper;
 
     public PedidoService(PedidoRepository repository, ProdutoRepository produtoRepository,
-            UsuarioRepository usuarioRepository, ProdutoMapper produtoMapper, PedidoMapper pedidoMapper) {
+    UserRepository usuarioRepository, ProdutoMapper produtoMapper, PedidoMapper pedidoMapper) {
         this.repository = repository;
         this.produtoRepository = produtoRepository;
         this.usuarioRepository = usuarioRepository;
@@ -41,7 +41,7 @@ public class PedidoService {
 
     @Transactional
     public PedidoDto geraPedido(Long usuarioId, List<ItemPedidoDto> itens) {
-        Usuario usuario = usuarioRepository.findById(usuarioId)
+        User usuario = usuarioRepository.findById(usuarioId)
                 .orElseThrow(() -> new RecursoNotFoundException("Usuário não encontrado!"));
 
         PedidoDto pedidoDto = new PedidoDto();

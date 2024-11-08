@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.rafaelsaca.cardapio.models.Pedido.StatusPedido;
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -26,7 +24,7 @@ public class Pedido {
 
     @ManyToOne
     @JoinColumn(name = "usuarioId", nullable = false)
-    private Usuario usuario;
+    private User usuario;
 
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemPedido> itens = new ArrayList<>();
@@ -50,11 +48,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 

@@ -5,13 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.rafaelsaca.cardapio.models.Pedido;
-import com.rafaelsaca.cardapio.models.Usuario;
+import com.rafaelsaca.cardapio.models.User;
+
 
 public class PedidoDto {
 
     private Long id;
 
-    private Usuario usuario;
+    private User usuario;
 
     private List<ItemPedidoDto> itens = new ArrayList<>();
  
@@ -30,11 +31,11 @@ public class PedidoDto {
         this.id = id;
     }
 
-    public Usuario getUsuario() {
+    public User getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(User usuario) {
         this.usuario = usuario;
     }
 
